@@ -9,7 +9,7 @@ defmodule Mailman.Mixfile do
       app: :mailman,
       name: "Mailman",
       version: @version,
-      elixir: "~> 1.0",
+      elixir: "~> 1.12",
       package: package(),
       deps: deps(),
       docs: docs()
@@ -18,7 +18,8 @@ defmodule Mailman.Mixfile do
 
   # Configuration for the OTP application
   def application do
-    [applications: [:ssl, :crypto, :eiconv, :gen_smtp, :httpoison]]
+    [applications: [:ssl, :crypto, :eiconv, :gen_smtp, :httpoison],
+     extra_applications: [:eex]]
   end
 
   # Note that :eiconv encoder/decoder is used by gen_smtp as well,
@@ -35,9 +36,9 @@ defmodule Mailman.Mixfile do
     [
       {:eiconv, "~> 1.0.0"},
       {:gen_smtp, "~> 1.1.1"},
-      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
-      {:httpoison, "~> 1.6"},
-      {:credo, "~> 1.5.0-rc.2", only: [:dev, :test], runtime: false}
+      {:ex_doc, "~> 0.25.2", only: :dev, runtime: false},
+      {:httpoison, "~> 1.8.0"},
+      {:credo, "~> 1.5.6", only: [:dev, :test], runtime: false}
     ]
   end
 
