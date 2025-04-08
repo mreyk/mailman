@@ -9,6 +9,7 @@ defmodule Mailman.Parsing do
   def parse(message) when is_binary(message) do
     {:ok, parse(:mimemail.decode(message))}
   end
+
   def parse(raw) do
     %Mailman.Email{
       subject: get_header(raw, "Subject") || "",
@@ -30,7 +31,7 @@ defmodule Mailman.Parsing do
   def parse!(message_text) do
     case parse(message_text) do
       {:ok, parsed} -> parsed
-      {:error, reason} -> throw("Couldn't parse given message. #{reason}")
+      error -> throw("Couldn't parse given message. #{inspect(error)}")
     end
   end
 
@@ -111,8 +112,6 @@ defmodule Mailman.Parsing do
       data: get_raw_body(raw_part)
     }
   end
-
-
 
   def content_parts(raw) when is_tuple(raw) do
     body = get_raw_body(raw)

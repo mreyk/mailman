@@ -1,2 +1,2 @@
-Mailman.TestServerSupervisor.start_link
-ExUnit.start
+Mailman.TestServerSupervisor.start_link()
+ExUnit.start()

@@ -15,7 +15,7 @@ defmodule Mailman.Header do
 
   def process_value(name, value) do
     case name do
-      'To' -> String.split(value, ",")
+      "To" -> String.split(value, ",")
       _ -> value
     end
   end

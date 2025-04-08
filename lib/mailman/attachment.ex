@@ -672,10 +672,11 @@ defmodule Mailman.Attachment do
     if is_valid_url?(url) do
       case HTTPoison.get(url, recv_timeout: 60_000) do
         {:ok, response} ->
-            case response.status_code do
+          case response.status_code do
             200 -> {:ok, response.body}
             _ -> {:error, :invalid_http_response}
-            end
+          end
+
         {:error, message} ->
           {:error, message}
       end
