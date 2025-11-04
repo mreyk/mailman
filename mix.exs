@@ -9,7 +9,7 @@ defmodule Mailman.Mixfile do
       app: :mailman,
       name: "Mailman",
       version: @version,
-      elixir: "~> 1.18.3",
+      elixir: "~> 1.19",
       package: package(),
       deps: deps(),
       docs: docs()

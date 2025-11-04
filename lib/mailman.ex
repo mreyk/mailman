@@ -22,7 +22,8 @@ defmodule Mailman do
   """
   def deliver(email, context, :send_cc_and_bcc, extra_headers) do
     bcc_list = email.bcc
-    cleaned_email = %Mailman.Email{email | bcc: []}
+    %Mailman.Email{} = email
+    cleaned_email = %{email | bcc: []}
     config = Mailman.Context.get_config(context)
     message = Mailman.Render.render(cleaned_email, context.composer, extra_headers)
 
@@ -31,15 +32,15 @@ defmodule Mailman do
     cc_tasks =
       email.cc
       |> Enum.map(fn address ->
-        cc_envelope = %Mailman.Email{email | to: [address]}
+        cc_envelope = %{email | to: [address]}
         Adapter.deliver(config, cc_envelope, message)
       end)
 
     bcc_tasks =
       bcc_list
       |> Enum.map(fn address ->
-        bcc_envelope = %Mailman.Email{email | to: [address]}
-        bcc_message = %Mailman.Email{email | bcc: [address]}
+        bcc_envelope = %{email | to: [address]}
+        bcc_message = %{email | bcc: [address]}
         message = Mailman.Render.render(bcc_message, context.composer)
         Adapter.deliver(config, bcc_envelope, message)
       end)
