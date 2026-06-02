@@ -34,10 +34,10 @@ defmodule Mailman.Mixfile do
   defp deps do
     [
       {:eiconv, "~> 1.0.0"},
-      {:gen_smtp, "~> 1.2.0"},
-      {:ex_doc, "~> 0.37.3", only: :dev, runtime: false},
-      {:httpoison, "~> 2.2.2"},
-      {:credo, "~> 1.7.11", only: [:dev, :test], runtime: false}
+      {:gen_smtp, "~> 1.3.0"},
+      {:ex_doc, "~> 0.40.3", only: :dev, runtime: false},
+      {:httpoison, "~> 2.3.0"},
+      {:credo, "~> 1.7.18", only: [:dev, :test], runtime: false}
     ]
   end
 
